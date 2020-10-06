@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public BulletManager bulletManager;
+
     private Rigidbody2D rigidBody;
     
     public float horizontalBoundary;
@@ -24,6 +26,13 @@ public class PlayerController : MonoBehaviour
     {
         _Move();
         _CheckBounds();
+        _FireBullet();
+    }
+
+    private void _FireBullet()
+    {
+        if(Time.frameCount % 20 == 0)
+            bulletManager.GetBullet(transform.position);
     }
 
     private void _Move()
